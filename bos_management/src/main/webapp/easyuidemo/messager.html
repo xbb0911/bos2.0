@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>消息窗口messager</title>
+
+		<!--导入js文件-->
+		<script type="text/javascript" src="../js/jquery-1.8.3.js"></script>
+		<script type="text/javascript" src="../js/easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../js/easyui/locale/easyui-lang-zh_CN.js"></script>
+		<link rel="stylesheet" href="../js/easyui/themes/default/easyui.css" />
+		<link rel="stylesheet" href="../js/easyui/themes/icon.css" />
+		
+		
+		<script type="text/javascript">
+			
+			$(function(){
+				
+				//警告窗口
+				//$.messager.alert("警告窗口","<font color='red'>fire the hole!!!</font>","question");
+				
+				//确认窗口
+				/*$.messager.confirm("确认窗口","Are you sure?",function(result){
+					if(result){
+						alert("yeyeyeyeye!!!!");
+					}else{
+						alert("nonononono!!!!");
+					}
+				});*/
+				
+				//输入窗口
+				/*$.messager.prompt("输入窗口","来者何人?",function(val){
+					alert(val+",你就是250!");
+				});*/
+				
+				//右下角窗口
+				/*$.messager.show({
+					title: "右下角窗口",
+					msg: "减价大促销,<a href='#'>有惊喜哦</a>"
+				});*/
+				
+				//进度条
+				$.messager.progress({
+					interval:1000 //1秒增长10%
+				});
+				
+				//定时器,5秒后自动关闭进度条
+				window.setTimeout("$.messager.progress('close');",5000)
+				
+				
+			});
+			
+		</script>
+
+	</head>
+
+	<body class="easyui-layout">
+		<div data-options="region:'north',title:'北部'," style="height:100px;"></div>
+
+		<div data-options="region:'south',title:'South Title',split:true" style="height:100px;"></div>
+
+		<div data-options="region:'east',iconCls:'icon-reload',title:'East',split:true" style="width:100px;"></div>
+
+		<div data-options="region:'west',title:'West',split:true" style="width:200px;"></div>
+
+		<div data-options="region:'center',title:'center title'" style="padding:5px;background:#eee;">
+			
+		</div>
+
+	</body>
+
+</html>
