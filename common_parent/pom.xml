@@ -33,6 +33,7 @@
 		</dependency>
 
 		<!-- spring 框架 -->
+		<!--IOC导入-->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -45,12 +46,14 @@
 			<version>${spring.version}</version>
 		</dependency>
 
+		<!--web集成 配置监听器-->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 
+		<!--整合持久层框架-->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
@@ -63,12 +66,14 @@
 			<version>${spring.version}</version>
 		</dependency>
 
+		<!--测试集成-->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		
+
+		<!--AOP导入-->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aspects</artifactId>
@@ -90,16 +95,19 @@
 		</dependency>
 
 		<!-- struts2 框架 -->
+		<!--struts2基本开发-->
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-core</artifactId>
 			<version>${struts2.version}</version>
 		</dependency>
+		<!--struts2 和 Spring整合-->
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-spring-plugin</artifactId>
 			<version>${struts2.version}</version>
 		</dependency>
+		<!--struts2注解开发-->
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-convention-plugin</artifactId>

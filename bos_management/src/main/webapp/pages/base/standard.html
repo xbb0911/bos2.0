@@ -34,6 +34,21 @@
 					idField : 'id',
 					columns : columns
 				});
+				
+				
+				//对收派标准save按钮,添加click事件
+				$("#save").click(function(){
+					//判断form表单中的对象是否都通过验证
+					if($("#standardForm").form("validate")){
+						//全部通过验证
+						$("#standardForm").submit();
+					}else{
+						//没通过
+						$.messager.alert("警告","表单中存在一些非法内容","warning");
+					}
+					
+				});
+				
 			});	
 			
 			//工具栏
@@ -42,7 +57,7 @@
 				text : '增加',
 				iconCls : 'icon-add',
 				handler : function(){
-					alert('增加');
+					$("#standardWindow").window("open");
 				}
 			}, {
 				id : 'button-edit',
@@ -98,6 +113,10 @@
 				width : 120,
 				align : 'center'
 			} ] ];
+			
+			
+			
+			
 		</script>
 	</head>
 
@@ -115,7 +134,7 @@
 
 			<div region="center" style="overflow:auto;padding:5px;" border="false">
 				
-				<form>
+				<form id="standardForm" action="../../standard_save.action" method="post">
 					<table class="table-edit" width="80%" align="center">
 						<tr class="title">
 							<td colspan="2">收派标准信息
@@ -134,25 +153,25 @@
 							<td>最小重量</td>
 							<td>
 								<input type="text" name="minWeight" 
-										class="easyui-numberbox" required="true" />
+										class="easyui-numberbox" data-options="required:true" />
 							</td>
 						</tr>
 						<tr>
 							<td>最大重量</td>
 							<td>
-								<input type="text" name="maxWeight" class="easyui-numberbox" required="true" />
+								<input type="text" name="maxWeight" class="easyui-numberbox" data-options="required:true" />
 							</td>
 						</tr>
 						<tr>
 							<td>最小长度</td>
 							<td>
-								<input type="text" name="minLength" class="easyui-numberbox" required="true" />
+								<input type="text" name="minLength" class="easyui-numberbox" data-options="required:true" />
 							</td>
 						</tr>
 						<tr>
 							<td>最大长度</td>
 							<td>
-								<input type="text" name="maxLength" class="easyui-numberbox" required="true" />
+								<input type="text" name="maxLength" class="easyui-numberbox" data-options="required:true" />
 							</td>
 						</tr>
 					</table>
