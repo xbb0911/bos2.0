@@ -2,19 +2,14 @@ package com.xbb.bos.domain.base;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 /**
  * @description:收派标准
  */
 @Entity
 @Table(name = "T_STANDARD")
+//@NamedQueries({@NamedQuery(name = "Standard.queryName2", query = "from Standard where name = ?")})
 public class Standard {
 	@Id
 	@GeneratedValue
