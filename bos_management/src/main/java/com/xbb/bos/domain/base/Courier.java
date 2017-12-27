@@ -186,7 +186,6 @@ public class Courier {
 				", vehicleNum='" + vehicleNum + '\'' +
 				", standard=" + standard +
 				", takeTime=" + takeTime +
-				", fixedAreas=" + fixedAreas +
 				'}';
 	}
 }
