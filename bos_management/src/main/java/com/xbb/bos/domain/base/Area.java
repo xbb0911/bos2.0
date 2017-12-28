@@ -1,5 +1,7 @@
 package com.xbb.bos.domain.base;
 
+import org.apache.struts2.json.annotations.JSON;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -35,6 +37,17 @@ public class Area {
 
 	@OneToMany(mappedBy = "area")
 	private Set<SubArea> subareas = new HashSet<SubArea>();
+
+	public Area() {
+	}
+
+	public Area(String id, String province, String city, String district, String postcode) {
+		this.id = id;
+		this.province = province;
+		this.city = city;
+		this.district = district;
+		this.postcode = postcode;
+	}
 
 	public String getId() {
 		return id;
@@ -92,6 +105,8 @@ public class Area {
 		this.shortcode = shortcode;
 	}
 
+	//避免no session
+	@JSON(serialize = false)
 	public Set<SubArea> getSubareas() {
 		return subareas;
 	}
