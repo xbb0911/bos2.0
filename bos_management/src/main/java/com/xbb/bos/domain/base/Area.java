@@ -5,11 +5,7 @@ import org.apache.struts2.json.annotations.JSON;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 /**
@@ -48,6 +44,11 @@ public class Area {
 		this.district = district;
 		this.postcode = postcode;
 	}
+
+	/*@Transient
+	public String getInfo(){
+		return province+city+district;
+	}*/
 
 	public String getId() {
 		return id;

@@ -44,7 +44,21 @@
 			}
 			
 			function doView(){
-				alert("修改...");
+				//获取当前行的数据
+				var rows = $("#grid").datagrid("getSelections");
+				//判断是否选中一行
+				if(rows.length != 1){
+				    //多选或者没选
+					$.messager.alert("警告","修改信息只能选中一条信息","warning");
+				}else{
+				    //选中一行
+				    var row = rows[0];
+				    //将选中的数据显示到form表单中
+					$("#areaForm").form("load",row);
+					//打开添加窗口
+					$("#addWindow").window("open");
+				}
+
 			}
 			
 			function doDelete(){
@@ -72,6 +86,13 @@
 				text : '导入',
 				iconCls : 'icon-redo'
 			}, {
+			    id : 'button-export',
+				text : '导出',
+				iconCls : 'icon-undo',
+				handler : function () {
+					location.href = "../../area_export.action";
+                }
+			},{
 			    id : 'button-search',
 				text : '查询',
 				iconCls : 'icon-search',
@@ -181,6 +202,16 @@
 					$("#searchWindow").window('close');
                 });
 
+				//区域信息添加功能
+				$("#save").click(function () {
+					//判断form表单元素是否都满足表单校验添加
+					if($("#areaForm").form("validate")){
+					    $("#areaForm").submit();
+					}else {
+					    $.messager.alert("警告","表单中存在非法输入项","warning");
+					}
+                });
+
 			});
 		
 			function doDblClickRow(){
@@ -201,11 +232,12 @@
 			</div>
 
 			<div region="center" style="overflow:auto;padding:5px;" border="false">
-				<form>
+				<form id="areaForm" action="../../area_save.action" method="post">
 					<table class="table-edit" width="80%" align="center">
 						<tr class="title">
 							<td colspan="2">区域信息</td>
 						</tr>
+
 						<tr>
 							<td>编码</td>
 							<td>

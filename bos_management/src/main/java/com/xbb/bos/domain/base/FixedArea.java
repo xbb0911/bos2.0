@@ -1,5 +1,7 @@
 package com.xbb.bos.domain.base;
 
+import org.apache.struts2.json.annotations.JSON;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -97,6 +99,8 @@ public class FixedArea {
 		this.operator = operator;
 	}
 
+	//排除关联集合属性
+	@JSON(serialize = false)
 	public Set<SubArea> getSubareas() {
 		return subareas;
 	}
@@ -105,6 +109,8 @@ public class FixedArea {
 		this.subareas = subareas;
 	}
 
+	//排除关联集合属性
+	@JSON(serialize = false)
 	public Set<Courier> getCouriers() {
 		return couriers;
 	}
