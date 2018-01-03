@@ -184,4 +184,17 @@ public class CourierAction extends BaseAction<Courier>{
         courierService.restore(idArray);
         return SUCCESS;
     }
+
+    /**
+     * 查询未关联定区的快递员
+     * @return
+     */
+    @Action(value = "courier_findnoassociation",results = {@Result(name = "success",type = "json")})
+    public String findnoassociation(){
+        //调用业务层,查询未关联定区的快递员
+        List<Courier> couriers = courierService.findNoAssociation();
+        //将查询到的快递员列表压入值栈中
+        ActionContext.getContext().getValueStack().push(couriers);
+        return SUCCESS;
+    }
 }

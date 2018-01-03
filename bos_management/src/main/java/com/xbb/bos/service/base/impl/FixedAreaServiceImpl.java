@@ -1,7 +1,11 @@
 package com.xbb.bos.service.base.impl;
 
+import com.xbb.bos.dao.base.CourierRepository;
 import com.xbb.bos.dao.base.FixedAreaRepository;
+import com.xbb.bos.dao.base.TakeTimeRepository;
+import com.xbb.bos.domain.base.Courier;
 import com.xbb.bos.domain.base.FixedArea;
+import com.xbb.bos.domain.base.TakeTime;
 import com.xbb.bos.service.base.IFixedAreaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -51,5 +55,28 @@ public class FixedAreaServiceImpl implements IFixedAreaService {
     @Override
     public List<FixedArea> findAll() {
         return fixedAreaRepository.findAll();
+    }
+
+
+    @Autowired
+    private CourierRepository courierRepository;
+    @Autowired
+    private TakeTimeRepository takeTimeRepository;
+
+    /**
+     * 关联快递员到定区
+     * @param model
+     * @param courierId
+     * @param takeTimeId
+     */
+    @Override
+    public void associationCourierToFixedArea(FixedArea model, Integer courierId, Integer takeTimeId) {
+        FixedArea persistFixedArea = fixedAreaRepository.findOne(model.getId());
+        Courier courier = courierRepository.findOne(courierId);
+        TakeTime takeTime = takeTimeRepository.findOne(takeTimeId);
+        //快递员关联到定区上
+        persistFixedArea.getCouriers().add(courier);
+        //将收派标准管理到快递员上
+        courier.setTakeTime(takeTime);
     }
 }

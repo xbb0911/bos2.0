@@ -34,4 +34,12 @@ public interface IFixedAreaService {
      * @return
      */
     List<FixedArea> findAll();
+
+    /**
+     * 关联快递员到定区
+     * @param model
+     * @param courierId
+     * @param takeTimeId
+     */
+    void associationCourierToFixedArea(FixedArea model, Integer courierId, Integer takeTimeId);
 }

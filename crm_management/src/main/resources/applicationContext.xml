@@ -14,11 +14,12 @@
 		http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
 	<!-- 扫描 @Server @Controller @Repository -->
-	<context:component-scan base-package="cn.itcast"/>
+	<context:component-scan base-package="com.xbb.crm"/>
 
 	<!-- 加载properties文件 -->
 	<context:property-placeholder location="classpath:config.properties" />
 	
 	<!-- 引入 数据库连接配置文件  -->
 	<import resource="applicationContext-dataSource.xml"/>
+	<import resource="applicationContext-webService.xml"/>
 </beans>
