@@ -1,7 +1,6 @@
 package com.xbb.bos.service.base;
 
 import com.xbb.bos.domain.base.SubArea;
-import com.xbb.bos.web.action.SubAreaAction;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;

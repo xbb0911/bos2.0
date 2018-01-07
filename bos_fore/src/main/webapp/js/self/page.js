@@ -24,10 +24,10 @@ bosfore_app.controller("ctrlRead", ['$scope', '$http', function($scope, $http) {
 
 		$http({
 			method: 'GET',
-			url: 'data/promotion' + page + '.json',
+			url: 'promotion_pageQuery.action',
 			params: {
 				"page": page,
-				"pageSize": $scope.pageSize
+				"rows": $scope.pageSize
 			}
 		}).success(function(data, status, headers, config) {
 			// 显示表格数据 
@@ -46,6 +46,11 @@ bosfore_app.controller("ctrlRead", ['$scope', '$http', function($scope, $http) {
 			begin = page - 5;
 			if(begin < 0) {
 				begin = 1;
+			}
+
+			end = page + 4;
+			if(end > $scope.totalPages){
+				end = $scope.totalPages;
 			}
 
 			end = begin + 9;

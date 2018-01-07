@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import javax.ws.rs.QueryParam;
 import java.util.List;
 
 /**
@@ -42,4 +43,19 @@ public interface CustomerRepository extends JpaRepository<Customer,Integer>{
     @Query("update Customer set fixedAreaId = null where fixedAreaId = ?")
     @Modifying
     public void clearFixedAreaId(String fixedAreaId);
+
+    /**
+     * 根据电话号码查询用户,判断是否已经绑定成功
+     * @param telephone
+     * @return
+     */
+    Customer findByTelephone(String telephone);
+
+    /**
+     * 进行邮箱激活绑定,修改用户的type属性
+     * @param telephone
+     */
+    @Query("update Customer set type=1 where telephone=?")
+    @Modifying
+    void updateType(String telephone);
 }

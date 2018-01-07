@@ -13,6 +13,26 @@
         </plugins>
     </build>
 
+    <dependencies>
+        <dependency>
+            <groupId>cn.itcast.maven</groupId>
+            <artifactId>crm_domain</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!--邮件发送工具-->
+        <dependency>
+            <groupId>javamail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.xbb.maven</groupId>
+            <artifactId>bos_domain</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
     <parent>
      <groupId>cn.itcast.maven</groupId>
  	 <artifactId>common_parent</artifactId>

@@ -72,4 +72,6 @@
 	<!-- 整合spring data jpa -->
 	<jpa:repositories base-package="com.xbb.bos.dao" />
 
+	<!-- 引入WebService配置 -->
+	<import resource="applicationContext-webService.xml"/>
 </beans>

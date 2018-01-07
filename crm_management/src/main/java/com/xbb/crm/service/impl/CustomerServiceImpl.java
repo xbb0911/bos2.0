@@ -62,4 +62,32 @@ public class CustomerServiceImpl implements ICustomerService{
             customerRepository.updateFixedAreaId(fixedAreaId,id);
         }
     }
+
+    /**
+     * 用户注册信息保存
+     * @param customer
+     */
+    @Override
+    public void regist(Customer customer) {
+        customerRepository.save(customer);
+    }
+
+    /**
+     * 根据电话号码查询用户,判断是否已经绑定成功
+     * @param telephone
+     * @return
+     */
+    @Override
+    public Customer findByTelephone(String telephone) {
+        return customerRepository.findByTelephone(telephone);
+    }
+
+    /**
+     * 进行邮箱激活绑定,修改用户的type属性
+     * @param telephone
+     */
+    @Override
+    public void updateType(String telephone) {
+        customerRepository.updateType(telephone);
+    }
 }

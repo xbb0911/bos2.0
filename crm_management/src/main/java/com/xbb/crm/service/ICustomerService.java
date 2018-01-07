@@ -40,4 +40,35 @@ public interface ICustomerService {
     public void associationCustomersToFixedArea(
             @QueryParam("customerIdStr") String customerIdStr,
             @QueryParam("fixedAreaId") String fixedAreaId);
+
+
+    /**
+     * 用户注册信息保存
+     * @param customer
+     */
+    @Path("/customer")
+    @POST
+    @Consumes({"application/xml","application/json"})
+    public void regist(Customer customer);
+
+    /**
+     * 根据电话号码查询用户,判断是否已经绑定成功
+     * @param telephone
+     * @return
+     */
+    @Path("/customer/telephone/{telephone}")
+    @GET
+    @Consumes({"application/xml","application/json"})
+    public Customer findByTelephone(@PathParam("telephone") String telephone);
+
+
+    /**
+     * 进行邮箱激活绑定,修改用户的type属性
+     * @param telephone
+     */
+    @Path("/customer/updatetype/{telephone}")
+    @GET
+    public void updateType(@PathParam("telephone") String telephone);
+
+
 }
