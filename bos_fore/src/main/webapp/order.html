@@ -4,6 +4,9 @@
 <link href="css/city-picker.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/styleorder.css">
 
+<!-- 百度地图 -->
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=4IU3oIAMpZhfWZsMu7xzqBBAf6vMHcoa"></script>
+
 <div class="order" id="ng-app" ng-app="app">
 	<!-- orderall -->
 	<section>
@@ -47,7 +50,7 @@
 				</ul>
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane fade in active" id="one">
-						<form id="orderForm" class="form-horizontal" method="post">
+						<form id="orderForm" class="form-horizontal" action="order_add.action" method="post">
 						<!--寄件人信息 -->
 						<div class="model">
 							<div class="areatitle">
@@ -55,22 +58,22 @@
 							</div>
 							<div class="col-md-5">
 									<div class="orderinfo">
-										<div class="form-group " id="sender-group">
+										<div class="form-group " id="sender-group1">
 											<label class="col-sm-3 control-label"><b>*</b>姓名：</label>
 
 											<div class="col-sm-8 input-group" style="padding:0 15px;">
 												<input name="sendName" type="text" class="form-control" placeholder="请输入发件人姓名" required="required">
 												<div class="input-group-addon">
-													<button type="button" data-toggle="modal" data-target="#myModal" id="dao"><img src="images/icon/suyun/contact.png"></button>
+													<button type="button" data-toggle="modal" data-target="#myModal" id="dao1"><img src="images/icon/suyun/contact.png"></button>
 												</div>
 
 												<!-- Modal -->
-												<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+												<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 													<div class="modal-dialog">
 														<div class="modal-content">
 															<div class="modal-header">
 																<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
-																<h4 class="modal-title" id="myModalLabel"><strong>从地址薄导入</strong></h4>
+																<h4 class="modal-title" id="myModalLabel1"><strong>从地址薄导入</strong></h4>
 															</div>
 															<div class="modal-body">
 																<!-- Nav tabs -->
@@ -87,7 +90,7 @@
 																<!-- Tab panes -->
 																<div class="tab-content">
 																		<div class="form-group col-md-5">
-																			<input type="password" class="form-control" id="inputPassword" placeholder="输入姓名/手机号/地址查询">
+																			<input type="password" class="form-control" id="inputPassword1" placeholder="输入姓名/手机号/地址查询">
 																		</div>
 																		<button type="submit" class="btn btn-danger new">搜索</button>
 																	<table class="table table-striped">
@@ -105,8 +108,8 @@
 
 																	</table>
 
-																	<div role="tabpanel" class="tab-pane active clearfix" id="person">个人地址</div>
-																	<div role="tabpanel" class="tab-pane" id="all">常用地址</div>
+																	<div role="tabpanel" class="tab-pane active clearfix" id="person1">个人地址</div>
+																	<div role="tabpanel" class="tab-pane" id="all1">常用地址</div>
 
 																</div>
 
@@ -123,7 +126,7 @@
 											</div>
 										</div>
 
-										<div class="form-group" id="mobile-group">
+										<div class="form-group" id="mobile-group1">
 											<label class="col-sm-3 control-label"><b>*</b>联系方式：</label>
 
 											<div class="col-sm-8">
@@ -131,7 +134,7 @@
 
 											</div>
 										</div>
-										<div class="form-group" id="sendcompany-group">
+										<div class="form-group" id="sendcompany-group1">
 											<label class="col-sm-3 control-label">寄件公司：</label>
 
 											<div class="col-sm-8">
@@ -281,7 +284,8 @@
 											<label for="inputPassword" class="col-sm-3 control-label"><b>*</b>详细地址：</label>
 
 											<div class="col-sm-8">
-												<input name="recAddress" type="text" class="form-control" placeholder="街道详细（精确到门牌号） " required="required">
+												<input id="recAddress" name="recAddress" type="text" class="form-control" placeholder="街道详细（精确到门牌号） " required="required">
+												<div id="searchResultPanel2" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
 											</div>
 										</div>
 									</div>
@@ -558,4 +562,116 @@
 		function Click() {
 			$('a[rel*=downloadr]').downloadr()
 		}
+
+
 	</script>
+
+<script type="text/javascript">
+    // 百度地图API功能
+    function G(id) {
+        return document.getElementById(id);
+    }
+
+    var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
+        {"input" : "sendAddress"
+        });
+
+    ac.addEventListener("onhighlight", function(e) {  //鼠标放在下拉列表上的事件
+        var str = "";
+        var _value = e.fromitem.value;
+        var value = "";
+        if (e.fromitem.index > -1) {
+            value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+        }
+        str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+
+        value = "";
+        if (e.toitem.index > -1) {
+            _value = e.toitem.value;
+            value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+        }
+        str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+        G("searchResultPanel").innerHTML = str;
+    });
+
+    var myValue;
+    ac.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件
+        var _value = e.item.value;
+        myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+        G("searchResultPanel").innerHTML ="onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
+
+        //选中详细地址后,调用百度地图获取云地理编码
+		var address = encodeURIComponent(myValue);
+		$.getJSON(
+		    "http://api.map.baidu.com/cloudgc/v1?ak=zbLsuDDL4CS2U0M4KezOZZbGUY9iWtVf&address="
+				+address+"&callback=?",function (data) {
+				if(data.status == 0 && data.result.length>0){
+				    $("#sendAreaInfo").citypicker('reset');
+				    $("#sendAreaInfo").citypicker('destroy');
+
+				    $("#sendAreaInfo").citypicker({
+						province:data.result[0].address_components.province,
+						city:data.result[0].address_components.city,
+						district:data.result[0].address_components.district,
+					});
+				}
+            });
+
+    });
+
+</script>
+
+<script type="text/javascript">
+    // 百度地图API功能
+    function G(id) {
+        return document.getElementById(id);
+    }
+
+    var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
+        {"input" : "recAddress"
+        });
+
+    ac.addEventListener("onhighlight", function(e) {  //鼠标放在下拉列表上的事件
+        var str = "";
+        var _value = e.fromitem.value;
+        var value = "";
+        if (e.fromitem.index > -1) {
+            value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+        }
+        str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+
+        value = "";
+        if (e.toitem.index > -1) {
+            _value = e.toitem.value;
+            value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+        }
+        str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+        G("searchResultPanel2").innerHTML = str;
+    });
+
+    var myValue;
+    ac.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件
+        var _value = e.item.value;
+        myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+        G("searchResultPanel2").innerHTML ="onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
+
+        //选中详细地址后,调用百度地图获取云地理编码
+        var address = encodeURIComponent(myValue);
+        $.getJSON(
+            "http://api.map.baidu.com/cloudgc/v1?ak=zbLsuDDL4CS2U0M4KezOZZbGUY9iWtVf&address="
+            +address+"&callback=?",function (data) {
+                if(data.status == 0 && data.result.length>0){
+                    $("#recAreaInfo").citypicker('reset');
+                    $("#recAreaInfo").citypicker('destroy');
+
+                    $("#recAreaInfo").citypicker({
+                        province:data.result[0].address_components.province,
+                        city:data.result[0].address_components.city,
+                        district:data.result[0].address_components.district,
+                    });
+                }
+            });
+
+    });
+
+</script>

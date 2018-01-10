@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 /**
  * 宣传任务业务层实现类
  * Created by xbb on 2018/1/5.
@@ -70,6 +72,15 @@ public class PromotionServiceImpl implements IPromotionService {
     public Promotion findById(Integer id) {
         System.out.println(id);
         return promotionRepository.findOne(id);
+    }
+
+    /**
+     * 定时设置宣传任务状态
+     * @param date
+     */
+    @Override
+    public void updateStatus(Date date) {
+        promotionRepository.updateStatus(date);
     }
 
 }

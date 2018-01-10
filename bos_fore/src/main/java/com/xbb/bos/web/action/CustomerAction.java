@@ -1,6 +1,7 @@
 package com.xbb.bos.web.action;
 
 import cn.itcast.crm.domain.Customer;
+import com.xbb.bos.constant.Constants;
 import com.xbb.bos.utils.MailUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.cxf.jaxrs.client.WebClient;
@@ -181,6 +182,28 @@ public class CustomerAction extends BaseAction<Customer>{
             redisTemplate.delete(model.getTelephone());
         }
         return NONE;
+    }
+
+    /**
+     * 用户登录
+     * @return
+     */
+    @Action(value = "customer_login",results ={
+        @Result(name = "login",location = "login.html",type = "redirect"),
+        @Result(name = "success",location = "index.html#/myhome",type = "redirect")})
+    public String login(){
+        Customer customer = WebClient
+                .create(Constants.CRM_MANAGEMENT_URL+"/services/customerService/customer/login?telephone="+model.getTelephone()
+                        +"&password="+model.getPassword()).accept(MediaType.APPLICATION_JSON).get(Customer.class);
+        if(customer == null){
+            //登录失败
+            return LOGIN;
+        }else {
+            //登录成功
+            ServletActionContext.getRequest().getSession().setAttribute("customer",customer);
+            return SUCCESS;
+        }
+
     }
 
 }

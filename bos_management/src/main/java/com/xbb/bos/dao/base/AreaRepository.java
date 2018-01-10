@@ -36,4 +36,14 @@ public interface AreaRepository extends JpaRepository<Area,String>,JpaSpecificat
      */
     @Query("from Area where province = ? and city = ?")
     List<Area> findDistrict(String province, String city);
+
+    /**
+     * 根据省市区查询区域的方法
+     * @param province
+     * @param city
+     * @param district
+     * @return
+     */
+    Area  findByProvinceAndCityAndDistrict(String province,String city,String district);
+
 }

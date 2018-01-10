@@ -70,5 +70,27 @@ public interface ICustomerService {
     @GET
     public void updateType(@PathParam("telephone") String telephone);
 
+    /**
+     * 用户登录的功能
+     * @param telephone
+     * @param password
+     * @return
+     */
+    @Path("/customer/login")
+    @GET
+    @Consumes({"application/xml","application/json"})
+    public Customer login(@QueryParam("telephone") String telephone,
+                          @QueryParam("password") String password);
+
+
+    /**
+     * 根据用户地址查询对象的定区编码
+     * @param address
+     * @return
+     */
+    @Path("/customer/findFixedAreaIdByAddress")
+    @GET
+    @Consumes({"application/xml","application/json"})
+    public String findFixedAreaIdByAddress(@QueryParam("address") String address);
 
 }

@@ -90,4 +90,25 @@ public class CustomerServiceImpl implements ICustomerService{
     public void updateType(String telephone) {
         customerRepository.updateType(telephone);
     }
+
+    /**
+     * 用户登录
+     * @param telephone
+     * @param password
+     * @return
+     */
+    @Override
+    public Customer login(String telephone, String password) {
+        return customerRepository.findByTelephoneAndPassword(telephone,password);
+    }
+
+    /**
+     * 根据用户地址查询对象的定区编码
+     * @param address
+     * @return
+     */
+    @Override
+    public String findFixedAreaIdByAddress(String address) {
+        return customerRepository.findFixedAreaIdByAddress(address);
+    }
 }

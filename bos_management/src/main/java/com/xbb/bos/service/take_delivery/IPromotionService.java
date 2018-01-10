@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.ws.rs.*;
+import java.util.Date;
 
 /**
  * 宣传任务业务层接口
@@ -48,4 +49,10 @@ public interface IPromotionService {
     @GET
     @Produces({"application/xml","application/json"})
     Promotion findById(@PathParam("id") Integer id);
+
+    /**
+     * 定时设置宣传任务状态
+     * @param date
+     */
+    void updateStatus(Date date);
 }
