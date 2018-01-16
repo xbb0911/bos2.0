@@ -8,4 +8,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Created by xbb on 2018/1/9.
  */
 public interface OrderRepository extends JpaRepository<Order,Integer>{
+
+    /**
+     * 根据订单号查询订单
+     * @param orderNum
+     * @return
+     */
+    Order findByOrderNum(String orderNum);
 }

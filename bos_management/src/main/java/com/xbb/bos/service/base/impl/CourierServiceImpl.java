@@ -5,6 +5,7 @@ import com.xbb.bos.dao.base.CourierRepository;
 import com.xbb.bos.domain.base.Courier;
 import com.xbb.bos.service.base.ICourierService;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -40,6 +41,7 @@ public class CourierServiceImpl implements ICourierService,ModelDriven<Courier>{
      * @param courier
      */
     @Override
+    @RequiresPermissions("courier:add")
     public void save(Courier courier) {
         courierRepository.save(courier);
     }

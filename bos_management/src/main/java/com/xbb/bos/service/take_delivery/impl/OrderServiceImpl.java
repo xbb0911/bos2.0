@@ -133,6 +133,16 @@ public class OrderServiceImpl implements IOrderService {
 
     }
 
+    /**
+     * 根据订单号查询订单
+     * @param orderNum
+     * @return
+     */
+    @Override
+    public Order findByOrderNum(String orderNum) {
+        return orderRepository.findByOrderNum(orderNum);
+    }
+
 
     //生成工单,发送短信
     private void generateWorkBill(final Order order){
