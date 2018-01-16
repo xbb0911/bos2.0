@@ -2,6 +2,7 @@ package com.xbb.bos.domain.take_delivery;
 
 import com.xbb.bos.domain.base.Area;
 import com.xbb.bos.domain.base.Courier;
+import org.apache.struts2.json.annotations.JSON;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -260,6 +261,7 @@ public class Order {
 		this.wayBill = wayBill;
 	}
 
+	@JSON(serialize = false)
 	public Set<WorkBill> getWorkBills() {
 		return workBills;
 	}
