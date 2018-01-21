@@ -1,13 +1,14 @@
 package com.xbb.bos.domain.base;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @description:车辆
  */
 @Entity
 @Table(name = "T_VEHICLE")
-public class Vehicle {
+public class Vehicle implements Serializable{
 
 	@Id
 	@GeneratedValue

@@ -1,5 +1,8 @@
 package com.xbb.bos.domain.system;
 
+import org.apache.struts2.json.annotations.JSON;
+
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,7 +21,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "T_USER")
-public class User {
+public class User implements Serializable{
 
 	@Id
 	@GeneratedValue
@@ -119,6 +122,7 @@ public class User {
 		this.nickname = nickname;
 	}
 
+	@JSON(serialize = false)
 	public Set<Role> getRoles() {
 		return roles;
 	}

@@ -2,6 +2,7 @@ package com.xbb.bos.service.system.impl;
 
 import com.xbb.bos.dao.system.MenuRepository;
 import com.xbb.bos.domain.system.Menu;
+import com.xbb.bos.domain.system.User;
 import com.xbb.bos.service.system.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,5 +47,21 @@ public class MenuServiceImpl implements IMenuService {
         }
         //调用dao
         menuRepository.save(menu);
+    }
+
+    /**
+     * 根据用户查询菜单
+     * @param user
+     * @return
+     */
+    @Override
+    public List<Menu> findByUser(User user) {
+        //admin用户显示所有权限
+        if("admin".equals(user.getUsername())){
+            return menuRepository.findAll();
+        }else{
+            //根据用户角色插询菜单
+            return menuRepository.findByUser(user.getId());
+        }
     }
 }

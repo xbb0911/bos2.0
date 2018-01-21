@@ -1,13 +1,14 @@
 package com.xbb.bos.domain.base;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @description:分区
  */
 @Entity
 @Table(name = "T_SUB_AREA")
-public class SubArea {
+public class SubArea implements Serializable{
 
 	@Id
 	@Column(name = "C_ID")

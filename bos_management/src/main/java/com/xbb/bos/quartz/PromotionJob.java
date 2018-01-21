@@ -1,6 +1,7 @@
 package com.xbb.bos.quartz;
 
 import com.xbb.bos.service.take_delivery.IPromotionService;
+import com.xbb.bos.service.take_delivery.IWayBillService;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;

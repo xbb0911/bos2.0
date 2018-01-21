@@ -43,6 +43,7 @@
 	<!-- 安全管理器 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" ref="bosRealm"/>
+		<property name="cacheManager" ref="shiroCacheManager"/>
 	</bean>
 
 	<!-- 配置Realm -->

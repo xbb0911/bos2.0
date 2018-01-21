@@ -4,6 +4,7 @@ import com.xbb.bos.domain.base.Area;
 import com.xbb.bos.domain.base.Courier;
 import org.apache.struts2.json.annotations.JSON;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "T_ORDER")
 @XmlRootElement(name = "order")
-public class Order {
+public class Order implements Serializable{
 	@Id
 	@GeneratedValue
 	@Column(name = "C_ID")

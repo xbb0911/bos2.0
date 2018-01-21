@@ -1,5 +1,6 @@
 package com.xbb.bos.domain.take_delivery;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.xbb.bos.domain.base.Area;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 
 /**
@@ -21,7 +23,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "T_WAY_BILL")
 @Document(indexName = "bos",type = "waybill")
-public class WayBill {
+public class WayBill implements Serializable{
 
 	@Id
 	@GeneratedValue
@@ -143,6 +145,7 @@ public class WayBill {
 		this.wayBillNum = wayBillNum;
 	}
 
+	@JsonIgnore
 	public Order getOrder() {
 		return order;
 	}
@@ -175,6 +178,7 @@ public class WayBill {
 		this.sendCompany = sendCompany;
 	}
 
+	@JsonIgnore
 	public Area getSendArea() {
 		return sendArea;
 	}
@@ -215,6 +219,7 @@ public class WayBill {
 		this.recCompany = recCompany;
 	}
 
+	@JsonIgnore
 	public Area getRecArea() {
 		return recArea;
 	}

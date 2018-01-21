@@ -17,4 +17,18 @@ public interface IRoleService {
      * @return
      */
     List<Role> findByUser(User user);
+
+    /**
+     * 查询所有角色
+     * @return
+     */
+    List<Role> findAll();
+
+    /**
+     * 角色添加
+     * @param model
+     * @param permissionIds
+     * @param menuIds
+     */
+    void saveRole(Role model, String[] permissionIds, String menuIds);
 }

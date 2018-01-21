@@ -1,5 +1,8 @@
 package com.xbb.bos.domain.system;
 
+import org.apache.struts2.json.annotations.JSON;
+
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,7 +20,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "T_ROLE")
-public class Role {
+public class Role implements Serializable{
 	@Id
 	@GeneratedValue
 	@Column(name = "C_ID")
@@ -76,6 +79,7 @@ public class Role {
 		this.description = description;
 	}
 
+	@JSON(serialize = false)
 	public Set<User> getUsers() {
 		return users;
 	}
@@ -84,6 +88,7 @@ public class Role {
 		this.users = users;
 	}
 
+	@JSON(serialize = false)
 	public Set<Permission> getPermissions() {
 		return permissions;
 	}
@@ -92,6 +97,7 @@ public class Role {
 		this.permissions = permissions;
 	}
 
+	@JSON(serialize = false)
 	public Set<Menu> getMenus() {
 		return menus;
 	}

@@ -4,6 +4,8 @@ import com.xbb.bos.domain.take_delivery.WayBill;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 /**
  * 运单管理的service接口
  * Created by xbb on 2018/1/10.
@@ -33,4 +35,16 @@ public interface IWayBillService {
      * @return
      */
     Page<WayBill> findPageData(WayBill model, Pageable pageable);
+
+    /**
+     * 同步数据库和索引库
+     */
+    void syncIndex();
+
+    /**
+     * 根据条件查询wayBill
+     * @param model
+     * @return
+     */
+    List<WayBill> findWayBills(WayBill model);
 }

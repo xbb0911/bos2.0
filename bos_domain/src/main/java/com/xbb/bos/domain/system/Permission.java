@@ -2,6 +2,7 @@ package com.xbb.bos.domain.system;
 
 import org.apache.struts2.json.annotations.JSON;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,7 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "T_PERMISSION")
-public class Permission {
+public class Permission implements Serializable{
 
 	@Id
 	@GeneratedValue

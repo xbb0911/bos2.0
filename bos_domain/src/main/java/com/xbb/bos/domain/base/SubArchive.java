@@ -1,6 +1,7 @@
 package com.xbb.bos.domain.base;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "T_SUB_ARCHIVE")
-public class SubArchive {
+public class SubArchive implements Serializable{
 	@Id
 	@GeneratedValue
 	@Column(name = "C_ID")

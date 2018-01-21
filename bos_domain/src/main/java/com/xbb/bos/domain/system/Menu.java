@@ -2,25 +2,18 @@ package com.xbb.bos.domain.system;
 
 import org.apache.struts2.json.annotations.JSON;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @description:菜单
  */
 @Entity
 @Table(name = "T_MENU")
-public class Menu {
+public class Menu implements Serializable{
 	@Id
 	@GeneratedValue
 	@Column(name = "C_ID")
@@ -43,6 +36,17 @@ public class Menu {
 	@ManyToOne
 	@JoinColumn(name = "C_PID")
 	private Menu parentMenu;
+
+	@Transient
+	//实体类返回pid方法,在数据表中不生成数据列
+	public Integer getpId(){
+		if(parentMenu == null){
+			return 0;
+		}else{
+			return parentMenu.getId();
+		}
+	}
+
 
 	public int getId() {
 		return id;

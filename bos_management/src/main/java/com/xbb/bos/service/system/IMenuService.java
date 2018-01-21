@@ -1,6 +1,7 @@
 package com.xbb.bos.service.system;
 
 import com.xbb.bos.domain.system.Menu;
+import com.xbb.bos.domain.system.User;
 
 import java.util.List;
 
@@ -21,4 +22,11 @@ public interface IMenuService {
      * @param model
      */
     void save(Menu model);
+
+    /**
+     * 根据用户查询菜单
+     * @param user
+     * @return
+     */
+    List<Menu> findByUser(User user);
 }

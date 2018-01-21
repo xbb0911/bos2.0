@@ -26,13 +26,13 @@ public interface StandardRepository extends JpaRepository<Standard,Integer>{
     public List<Standard> queryName(String name);
 
     //2.不按命名规则查询,配置@query没有查语句,在实体类中用@NamedQuery定义
-    //@Query
-    //public List<Standard> queryName2(String name);
+    @Query
+    public List<Standard> queryName2(String name);
 
     //带有条件的修改和删除操作
-    /*@Query(value = "updata Standard set minLength=?2 where id = ?1")
+    @Query(value = "update Standard set minLength=?2 where id = ?1")
     @Modifying
-    public void updataMinLength(Integer id, Integer minLength);*/
+    public void updataMinLength(Integer id, Integer minLength);
 
 
 }

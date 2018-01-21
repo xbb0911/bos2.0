@@ -2,6 +2,7 @@ package com.xbb.bos.web.action.system;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.xbb.bos.domain.system.User;
+import com.xbb.bos.service.system.IUserService;
 import com.xbb.bos.web.common.BaseAction;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -10,8 +11,11 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+
+import java.util.List;
 
 /**
  * 后台用户登录的action
@@ -23,6 +27,13 @@ import org.springframework.stereotype.Controller;
 @Scope("prototype")
 public class UserAction extends BaseAction<User>{
 
+    @Autowired
+    private IUserService userService;
+
+    /**
+     * 用户登录
+     * @return
+     */
     @Action(value = "user_login",results = {
             @Result(name = "login",type = "redirect",location = "login.html"),
             @Result(name = "success",type = "redirect",location = "index.html")})
@@ -62,11 +73,47 @@ public class UserAction extends BaseAction<User>{
         }
     }
 
+    /**
+     * 用户退出
+     * @return
+     */
     @Action(value = "user_logout",results = {@Result(name = "success",type = "redirect",location = "login.html")})
     public String logout(){
         //基于shiro完成退出
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
+        return SUCCESS;
+    }
+
+    /**
+     * 查询所有用户
+     * @return
+     */
+    @Action(value = "user_list",results = {@Result(name = "success",type = "json")})
+    public String list(){
+        //调用业务层,返回用户列表
+        List<User> users = userService.findAll();
+        ActionContext.getContext().getValueStack().push(users);
+        return SUCCESS;
+    }
+
+
+    //属性注入
+    private String[] roleIds;
+
+    public void setRoleIds(String[] roleIds) {
+        this.roleIds = roleIds;
+    }
+
+    /**
+     * 用户添加
+     * @return
+     */
+    @Action(value = "user_save",results = {@Result(name = "success",type = "redirect",
+        location = "pages/system/userlist.html")})
+    public String save(){
+        //调用业务层
+        userService.save(model,roleIds);
         return SUCCESS;
     }
 

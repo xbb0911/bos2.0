@@ -4,6 +4,7 @@ import org.apache.struts2.json.annotations.JSON;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,7 +15,7 @@ import java.util.Set;
 @Entity
 @Table(name = "T_AREA")
 @XmlRootElement(name = "area")
-public class Area {
+public class Area implements Serializable{
 
 	@Id
 	@Column(name = "C_ID")

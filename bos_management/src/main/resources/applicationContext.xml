@@ -36,5 +36,8 @@
 
 	<!-- 引入shiro权限控制配置 -->
 	<import resource="applicationContext-shiro.xml"/>
+	
+	<!-- 引入cache 配置 -->
+	<import resource="applicationContext-cache.xml"/>
 
 </beans>

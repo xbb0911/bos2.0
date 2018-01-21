@@ -46,7 +46,7 @@ public class WayBillAction extends BaseAction<WayBill> {
             if(model.getOrder() != null && (model.getOrder().getId() == null || model.getOrder().getId() == 0)){
                 model.setOrder(null);
             }
-
+            model.setSignStatus(1);
             wayBillService.save(model);
             //保存成功
             result.put("success", true);
@@ -76,6 +76,7 @@ public class WayBillAction extends BaseAction<WayBill> {
         Pageable pageable = new PageRequest(page - 1, rows, new Sort(new Sort.Order(Sort.Direction.DESC, "id")));
         //调用业务层进行查询
         Page<WayBill> pageData =  wayBillService.findPageData(model,pageable);
+        System.out.println(pageData);
         //压入值栈返回
         pushPageDataToValueStack(pageData);
         return SUCCESS;

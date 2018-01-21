@@ -3,6 +3,7 @@ package com.xbb.bos.domain.base;
 import org.apache.struts2.json.annotations.JSON;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,7 +12,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "T_COURIER")
-public class Courier {
+public class Courier implements Serializable{
 
 	@Id
 	@GeneratedValue

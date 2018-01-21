@@ -2,6 +2,7 @@ package com.xbb.bos.domain.take_delivery;
 
 import com.xbb.bos.domain.base.Courier;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -19,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "T_WORK_BILL")
-public class WorkBill {
+public class WorkBill implements Serializable{
 	@Id
 	@GeneratedValue
 	@Column(name = "C_ID")
